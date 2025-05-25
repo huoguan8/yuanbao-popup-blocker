@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>生成元宝弹窗移除器图标</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>元宝弹窗移除器图标生成器</h1>
+  <div>
+    <canvas id="icon16" width="16" height="16"></canvas>
+    <canvas id="icon48" width="48" height="48"></canvas>
+    <canvas id="icon128" width="128" height="128"></canvas>
+  </div>
+  <div>
+    <button onclick="downloadIcons()">下载图标</button>
+  </div>
+
+  <script>
+    // 绘制图标
+    function drawIcon(canvas, size) {
+      const ctx = canvas.getContext('2d');
+      
+      // 背景
+      ctx.fillStyle = '#3498db';
+      ctx.fillRect(0, 0, size, size);
+      
+      // 关闭符号 (X)
+      ctx.strokeStyle = 'white';
+      ctx.lineWidth = size / 8;
+      ctx.beginPath();
+      ctx.moveTo(size * 0.3, size * 0.3);
+      ctx.lineTo(size * 0.7, size * 0.7);
+      ctx.moveTo(size * 0.7, size * 0.3);
+      ctx.lineTo(size * 0.3, size * 0.7);
+      ctx.stroke();
+      
+      // 边框
+      ctx.strokeStyle = '#2980b9';
+      ctx.lineWidth = size / 16;
+      ctx.strokeRect(0, 0, size, size);
+    }
+    
+    // 绘制所有尺寸的图标
+    drawIcon(document.getElementById('icon16'), 16);
+    drawIcon(document.getElementById('icon48'), 48);
+    drawIcon(document.getElementById('icon128'), 128);
+    
+    // 下载图标函数
+    function downloadIcons() {
+      downloadCanvas('icon16', 'icon16.png');
+      downloadCanvas('icon48', 'icon48.png');
+      downloadCanvas('icon128', 'icon128.png');
+    }
+    
+    function downloadCanvas(id, filename) {
+      const canvas = document.getElementById(id);
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html> 
