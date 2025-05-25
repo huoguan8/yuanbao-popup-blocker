@@ -7,6 +7,10 @@
       border: 1px solid #ccc;
       margin: 10px;
     }
+    @font-face {
+      font-family: 'Cute Font';
+      src: url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
+    }
   </style>
 </head>
 <body>
@@ -25,22 +29,24 @@
     function drawIcon(canvas, size) {
       const ctx = canvas.getContext('2d');
       
-      // 背景
-      ctx.fillStyle = '#3498db';
+      // 背景 - 更换为清新绿色
+      ctx.fillStyle = 'rgb(103, 197, 129)';
       ctx.fillRect(0, 0, size, size);
       
-      // 关闭符号 (X)
-      ctx.strokeStyle = 'white';
-      ctx.lineWidth = size / 8;
-      ctx.beginPath();
-      ctx.moveTo(size * 0.3, size * 0.3);
-      ctx.lineTo(size * 0.7, size * 0.7);
-      ctx.moveTo(size * 0.7, size * 0.3);
-      ctx.lineTo(size * 0.3, size * 0.7);
-      ctx.stroke();
+      // 绘制"元"字
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       
-      // 边框
-      ctx.strokeStyle = '#2980b9';
+      // 根据图标大小调整字体大小
+      const fontSize = Math.floor(size * 0.6);
+      ctx.font = `bold ${fontSize}px "Comic Sans MS", "Comic Sans", "楷体", "华文圆体", cursive`;
+      
+      // 在图标中心绘制"元"字
+      ctx.fillText('元', size/2, size/2);
+      
+      // 边框 - 更换为匹配的颜色
+      ctx.strokeStyle = 'rgb(83, 177, 109)';
       ctx.lineWidth = size / 16;
       ctx.strokeRect(0, 0, size, size);
     }
